@@ -10,19 +10,21 @@ type Order = {
     status: "ordered" | "completed"
 }
 
+let cashInRegister: number = 100;
+let nextOrderId: number = 1;
+const orderQueue: Array<Order> = [];
+let nextPizzaId: number = 1;
+
 const menu: Array<Pizza> = [
-    { id: 1, name: "Margherita", price: 8 },
-    { id: 2, name: "Pepperoni", price: 10 },
-    { id: 3, name: "Hawaiian", price: 10 },
-    { id: 4, name: "Veggie", price: 9 },
+    { id: nextPizzaId++, name: "Margherita", price: 8 },
+    { id: nextPizzaId++, name: "Pepperoni", price: 10 },
+    { id: nextPizzaId++, name: "Hawaiian", price: 10 },
+    { id: nextPizzaId++, name: "Veggie", price: 9 },
 ]
 
-let cashInRegister: number = 100
-let nextOrderId: number = 1
-const orderQueue: Array<Order> = []
-
 function addNewPizza(pizzaObj: Pizza): void {
-    menu.push(pizzaObj)
+    pizzaObj.id = nextPizzaId++;
+    menu.push(pizzaObj);
 }
 
 function placeOrder(pizzaName: string): Order | undefined {
@@ -62,9 +64,9 @@ export function getPizzaDetail(identifier: string | number): Pizza | undefined{
     }
 }
 
-addNewPizza({ id: 5, name: "Chicken Bacon Ranch", price: 12 })
-addNewPizza({ id: 6, name: "BBQ Chicken", price: 12 })
-addNewPizza({ id: 7, name: "Spicy Sausage", price: 11 })
+addNewPizza({ name: "Chicken Bacon Ranch", price: 12 })
+addNewPizza({ name: "BBQ Chicken", price: 12 })
+addNewPizza({ name: "Spicy Sausage", price: 11 })
 
 placeOrder("Chicken Bacon Ranch")
 completeOrder(1)
