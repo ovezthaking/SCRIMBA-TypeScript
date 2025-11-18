@@ -50,6 +50,23 @@ function completeOrder(orderId: number) {
     return order
 }
 
+function getPizzaDetail(identifier: string | number){
+    let pizza;
+    if(identifier != identifier.toString()){
+        pizza = menu.find(pizza => pizza.id == identifier);  
+    }
+    else if(identifier == identifier.toString()){
+        pizza = menu.find(pizza => pizza.name === identifier);
+    }
+    else{
+        throw new Error(`${identifier} not found`);
+    }
+    if (!pizza){
+        throw new Error(`pizza does not exist`);
+    }
+    return `id: ${pizza.id}, name: ${pizza.name}, price: ${pizza.price}`
+}
+
 addNewPizza({ id: 5, name: "Chicken Bacon Ranch", price: 12 })
 addNewPizza({ id: 6, name: "BBQ Chicken", price: 12 })
 addNewPizza({ id: 7, name: "Spicy Sausage", price: 11 })
@@ -59,4 +76,7 @@ completeOrder(1)
 
 console.log("Menu:", menu)
 console.log("Cash in register:", cashInRegister)
-console.log("Order queue:", orderQueue)
+console.log("Order queue:", orderQueue)\
+
+
+
