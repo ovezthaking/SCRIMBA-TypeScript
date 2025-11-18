@@ -49,8 +49,8 @@ function addToArray<T>(array:Array<T>, item:T): Array<T> {
 }
 
 // example usage:
-addToArray(menu, {id: nextPizzaId++, name: "Chicken Bacon Ranch", price: 12 })
-addToArray(orderQueue, { id: nextOrderId++, pizza: menu[2], status: "completed" })
+addToArray<Pizza>(menu, {id: nextPizzaId++, name: "Chicken Bacon Ranch", price: 12 })
+addToArray<Order>(orderQueue, { id: nextOrderId++, pizza: menu[2], status: "completed" })
 
 function completeOrder(orderId: number): Order {
     const order = orderQueue.find(order => order.id === orderId)
@@ -77,7 +77,6 @@ export function getPizzaDetail(identifier: string | number): Pizza | undefined{
     }
 }
 
-addNewPizza({ name: "Chicken Bacon Ranch", price: 12 })
 addNewPizza({ name: "BBQ Chicken", price: 12 })
 addNewPizza({ name: "Spicy Sausage", price: 11 })
 
