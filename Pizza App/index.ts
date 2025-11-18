@@ -51,20 +51,15 @@ function completeOrder(orderId: number) {
 }
 
 function getPizzaDetail(identifier: string | number){
-    let pizza;
-    if(identifier != identifier.toString()){
-        pizza = menu.find(pizza => pizza.id == identifier);  
+    if(typeof identifier === "number"){
+        return menu.find(pizza => pizza.id == identifier);  
     }
-    else if(identifier == identifier.toString()){
-        pizza = menu.find(pizza => pizza.name === identifier);
+    else if(typeof identifier === "string"){
+        return menu.find(pizza => pizza.name.toLowerCase() === identifier.toLowerCase());
     }
     else{
         throw new Error(`${identifier} not found`);
     }
-    if (!pizza){
-        throw new Error(`pizza does not exist`);
-    }
-    return pizza
 }
 
 addNewPizza({ id: 5, name: "Chicken Bacon Ranch", price: 12 })
