@@ -64,7 +64,7 @@ function getPizzaDetail(identifier: string | number){
     if (!pizza){
         throw new Error(`pizza does not exist`);
     }
-    return `id: ${pizza.id}, name: ${pizza.name}, price: ${pizza.price}`
+    return pizza
 }
 
 addNewPizza({ id: 5, name: "Chicken Bacon Ranch", price: 12 })
