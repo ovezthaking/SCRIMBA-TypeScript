@@ -21,11 +21,11 @@ let cashInRegister: number = 100
 let nextOrderId: number = 1
 const orderQueue: Array<Order> = []
 
-function addNewPizza(pizzaObj: Pizza) {
+function addNewPizza(pizzaObj: Pizza): void {
     menu.push(pizzaObj)
 }
 
-function placeOrder(pizzaName: string) {
+function placeOrder(pizzaName: string): Order | undefined {
     const selectedPizza = menu.find(pizzaObj => pizzaObj.name === pizzaName)
     if (!selectedPizza){
         console.error(`${pizzaName} does not exist in the menu`);
@@ -37,7 +37,7 @@ function placeOrder(pizzaName: string) {
     return newOrder
 }
 
-function completeOrder(orderId: number) {
+function completeOrder(orderId: number): Order {
     const order = orderQueue.find(order => order.id === orderId)
     if(!order){
         /*
@@ -50,7 +50,7 @@ function completeOrder(orderId: number) {
     return order
 }
 
-function getPizzaDetail(identifier: string | number){
+export function getPizzaDetail(identifier: string | number): Pizza | undefined{
     if(typeof identifier === "number"){
         return menu.find(pizza => pizza.id == identifier);  
     }
@@ -58,7 +58,7 @@ function getPizzaDetail(identifier: string | number){
         return menu.find(pizza => pizza.name.toLowerCase() === identifier.toLowerCase());
     }
     else{
-        throw new Error(`${identifier} not found`);
+        throw new TypeError(`${identifier} is not a string or a number`);
     }
 }
 
@@ -71,7 +71,7 @@ completeOrder(1)
 
 console.log("Menu:", menu)
 console.log("Cash in register:", cashInRegister)
-console.log("Order queue:", orderQueue)\
+console.log("Order queue:", orderQueue)
 
 
 
